@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "16638589726a8a3e58": {
+      "type": "LPS-about",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16638589726a8a3e58"
+  ]
+}

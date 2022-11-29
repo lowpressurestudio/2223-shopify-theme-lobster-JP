@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "823fffa0-7540-47f6-9940-f10e5def4d78": {
+      "type": "LPS-proform-form",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "823fffa0-7540-47f6-9940-f10e5def4d78"
+  ]
+}

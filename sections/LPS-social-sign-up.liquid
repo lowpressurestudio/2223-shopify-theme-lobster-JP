@@ -1,0 +1,135 @@
+
+<style>
+.bg-klaviyo {
+  background-position: center top;
+  background-size: cover;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+@media (min-width: 750px) {
+  .bg-klaviyo {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+  }
+}
+.klaviyo-title {
+  text-align: center;
+}
+.klaviyo-form div:empty {
+  display:block;
+}
+
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+</style>
+
+<!-- KLAVIYO PUBLIC API KEY -->  
+
+{%- if cart.currency.iso_code == "EUR" -%}
+<script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_eu }}"></script>
+{%- elsif cart.currency.iso_code == "CAD" -%}
+<script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_ca }}"></script>
+{%- else -%}
+<script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_us }}"></script>
+{%- endif -%}
+
+<!-- END KLAVIYO PUBLIC API KEY -->
+
+<section id="lps-social-sign-up-{{ section.id }}" class="lps-social-sign-up page-width section-{{ section.id }}-padding">
+  <div class="outlined-block">
+    <div class="row">
+      <div class="col-12 col-lg-6 pt-3 px-4 px-md-5">
+        {%- if settings.social_youtube_link != blank -%}<a class="btn btn-secondary mb-3 me-3" target="_blank" href="{{ settings.social_youtube_link }}">YouTube</a>{%- endif -%}
+        {%- if settings.social_discord_link != blank -%}<a class="btn btn-secondary mb-3 me-3" target="_blank" href="{{ settings.social_discord_link }}">Discord</a>{%- endif -%}
+        {%- if settings.social_instagram_link != blank -%}<a class="btn btn-secondary mb-3 me-3" target="_blank" href="{{ settings.social_instagram_link }}">Instagram</a>{%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}<a class="btn btn-secondary mb-3 me-3" target="_blank" href="{{ settings.social_tiktok_link }}">Tiktok</a>{%- endif -%}
+        {%- if settings.social_spotify_link != blank -%}<a class="btn btn-secondary mb-3 me-3" target="_blank" href="{{ settings.social_spotify_link }}">Spotify</a>{%- endif -%}
+      </div>
+      <div class="col-12 col-lg-6 py-3 px-4 px-md-5 klaviyo-form">
+        {%- if cart.currency.iso_code == "EUR" -%}
+          {%- if settings.klaviyo_newsletter_code_eu != blank -%}
+          {{ settings.klaviyo_newsletter_code_eu }}
+          {%- else -%}
+          <p class="m-0">Enter a Klaviyo code in Theme Settings > KLAVIYO > Klaviyo Newsletter Embed.</p>
+          {%- endif -%}
+        {%- elsif cart.currency.iso_code == "CAD" -%}
+          {%- if settings.klaviyo_newsletter_code_ca != blank -%}
+          {{ settings.klaviyo_newsletter_code_ca }}
+          {%- else -%}
+          <p class="m-0">Enter a Klaviyo code in Theme Settings > KLAVIYO > Klaviyo Newsletter Embed.</p>
+          {%- endif -%}
+        {%- else -%}
+          {%- if settings.klaviyo_newsletter_code_us != blank -%}
+          {{ settings.klaviyo_newsletter_code_us }}
+          {%- else -%}
+          <p class="m-0">Enter a Klaviyo code in Theme Settings > KLAVIYO > Klaviyo Newsletter Embed.</p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LPS Social Sign Up Bar",
+  "tag": "section",
+  "class": "lps-social-sign-up",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Social Buttons"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add a social media links to Theme Settings > Social Media."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Klaviyo Sign Up"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add a Klaviyo code to Theme Settings > KLAVIYO > Klaviyo code snippet."
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Social Sign Up Bar"
+    }
+  ]
+}
+{% endschema %}

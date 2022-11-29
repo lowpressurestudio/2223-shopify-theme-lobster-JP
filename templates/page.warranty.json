@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "29f1e0f1-2c48-4329-bbef-c21ec101bdfa": {
+      "type": "LPS-warranty",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "29f1e0f1-2c48-4329-bbef-c21ec101bdfa"
+  ]
+}

@@ -1,0 +1,94 @@
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+</style>
+
+<section id="lps-proform-thanks-{{ section.id }}" class="lps-proform-thanks page-width section-{{ section.id }}-padding">
+	
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="outlined-block p-4">
+		<div class="msg-block" style="display: none;">
+			<h3 class="pb-0">PLEASE NOTE:</h3>
+    		<p class="mt-0">It appears that we already have a record with your email address. We have added the details you have provided and sent an email containing a link to activate your account. Please activate your account, log-in and check your details carefully. Thanks!</p>
+		</div>
+		  
+        <p style="text-transform: none;">Thanks for submitting a proform application. You can log-in now, but we need to review your info before we can apply an industry discount. We'll contact you soon.</p>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<script>
+  
+$(document).ready(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const param_x = urlParams.get('exists');
+  // console.log('url param = '+param_x);
+  if (param_x == '1') {
+    $('.msg-block').show(); 
+  }
+});
+
+</script>
+
+
+{% schema %}
+{
+  "name": "LPS Proform Thanks",
+  "tag": "section",
+  "class": "lps-proform-thanks-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Proform Thanks"
+    },
+    {
+      "type": "paragraph",
+      "content": "Code editable in sections/LPS-proform-thanks.liquid"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Proform Thanks"
+    }
+  ]
+}
+{% endschema %}

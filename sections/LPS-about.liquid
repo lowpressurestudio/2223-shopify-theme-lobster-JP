@@ -1,0 +1,322 @@
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+.lps-about h2 {
+  font-size: 3.5rem;
+}
+.lps-about h3 {
+  font-size: 2.8rem;
+}
+.lps-about h4 {
+  font-size: 2rem;
+}
+.lps-about h5 {
+  font-size: 1.6rem;
+}
+.lps-about p {
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.lps-about .team-info-wrapper {
+  border-top: 1px solid var(--black);
+}
+
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="icon-instagram" viewbox="0 0 18 18" fill="none">
+    <path fill="currentColor" d="M8.77 1.58c2.34 0 2.62.01 3.54.05.86.04 1.32.18 1.63.3.41.17.7.35 1.01.66.3.3.5.6.65 1 .12.32.27.78.3 1.64.05.92.06 1.2.06 3.54s-.01 2.62-.05 3.54a4.79 4.79 0 01-.3 1.63c-.17.41-.35.7-.66 1.01-.3.3-.6.5-1.01.66-.31.12-.77.26-1.63.3-.92.04-1.2.05-3.54.05s-2.62 0-3.55-.05a4.79 4.79 0 01-1.62-.3c-.42-.16-.7-.35-1.01-.66-.31-.3-.5-.6-.66-1a4.87 4.87 0 01-.3-1.64c-.04-.92-.05-1.2-.05-3.54s0-2.62.05-3.54c.04-.86.18-1.32.3-1.63.16-.41.35-.7.66-1.01.3-.3.6-.5 1-.65.32-.12.78-.27 1.63-.3.93-.05 1.2-.06 3.55-.06zm0-1.58C6.39 0 6.09.01 5.15.05c-.93.04-1.57.2-2.13.4-.57.23-1.06.54-1.55 1.02C1 1.96.7 2.45.46 3.02c-.22.56-.37 1.2-.4 2.13C0 6.1 0 6.4 0 8.77s.01 2.68.05 3.61c.04.94.2 1.57.4 2.13.23.58.54 1.07 1.02 1.56.49.48.98.78 1.55 1.01.56.22 1.2.37 2.13.4.94.05 1.24.06 3.62.06 2.39 0 2.68-.01 3.62-.05.93-.04 1.57-.2 2.13-.41a4.27 4.27 0 001.55-1.01c.49-.49.79-.98 1.01-1.56.22-.55.37-1.19.41-2.13.04-.93.05-1.23.05-3.61 0-2.39 0-2.68-.05-3.62a6.47 6.47 0 00-.4-2.13 4.27 4.27 0 00-1.02-1.55A4.35 4.35 0 0014.52.46a6.43 6.43 0 00-2.13-.41A69 69 0 008.77 0z"/>
+    <path fill="currentColor" d="M8.8 4a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 7.43a2.92 2.92 0 110-5.85 2.92 2.92 0 010 5.85zM13.43 5a1.05 1.05 0 100-2.1 1.05 1.05 0 000 2.1z">
+  </symbol>
+</svg>
+
+<section id="lps-about-{{ section.id }}" class="lps-about lps-tabs page-width section-{{ section.id }}-padding">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="outlined-block p-4">
+        <p style="text-transform: none;">We started Lobster in 2011 to have the freedom to make boards and graphics exactly the way we wanted 
+Our goal is to make high quality snowboards that help us all progress our riding and we are not  afraid to try out new ideas and technologies to in order to make that a reality.  We are forever grateful to the snowboard community and team that we could build up over the years with everyone that rides a Lobster board. None of this would be possible if it wasn't for our strong community of supporters so thank you for making this dream a reality.</p>
+      </div>
+    </div>
+  </div>
+  
+  <ul class="row nav nav-tabs card-header-tabs" style="margin-left: -7.5px; margin-right: -7.5px;" data-bs-tabs="tabs">
+    <li class="nav-item col-12 col-md-6 mb-3">
+      <a class="nav-link active" aria-current="true" data-bs-toggle="tab" href="#creamteam">Cream Team</a>
+    </li>
+    <li class="nav-item col-12 col-md-6 mb-3">
+      <a class="nav-link" data-bs-toggle="tab" href="#senders">Senders</a>
+    </li>
+  </ul>
+  
+  <div class="row">
+    <div class="col-12 tab-content mt-3">
+      <div class="tab-pane active" id="creamteam">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Halldor Helgason the captain of the Lobster Cream team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_HALLDOR-HELGASON.jpg?v=1611659317">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Halldor Helgason</h3>
+                <h5>iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/halldor_helgason/" target="_blank">{% render 'icon-instagram' %}@halldor_helgason</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Eiki Helgason portait for the Lobster team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_eiki.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Eiki Helgason</h3>
+                <h5>iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/eiki.helgason/" target="_blank">{% render 'icon-instagram' %}@eiki.helgason</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Fridge Tischendorf backpack snowboarder for the Lobster team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_fridge.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Fridge</h3>
+                <h5>norway</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/fridge_st/" target="_blank">{% render 'icon-instagram' %}@fridge_st</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Frank Bourgeois portrait for the Lobster snowboard team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_FRANK-BOURGEOIS.jpg?v=1611659318">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Frank Bourgeois</h3>
+                <h5>CANADA</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/frankbourg/" target="_blank">{% render 'icon-instagram' %}@frankbourg</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Sparrow Knox portrait for the Lobster Snowboard team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_sparrow.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Sparrow Knox</h3>
+                <h5>england</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/sparrowknox/" target="_blank">{% render 'icon-instagram' %}@sparrowknox</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Birkir Georgsson a.k.a Master Chef Bucky with a portrait for the Lobster snowboard team" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_bucky.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h3>Birkir Georgsson<br></h3>
+                <h5>iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/masterchefbucky/" target="_blank">{% render 'icon-instagram' %}@masterchefbucky</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-pane" id="senders">
+        <div class="row">
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Hrund Hanna" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_HRUND-HANNA.jpg?v=1611664179">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>Hrund Hanna</h4>
+                <h5>iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/hrundur/" target="_blank">{% render 'icon-instagram' %}@hrundur</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="MARINÓ KRISTJÁNSON" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_MARINO-KRISTJANSON.jpg?v=1611664320">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>Marinó Kristjánson</h4>
+                <h5>Iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/MARINOKRISTJANS/" target="_blank">{% render 'icon-instagram' %}@MARINOKRISTJANS</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="KASPER DE ZOETE" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_KASPER-DE-ZOETE_2.jpg?v=1611664437">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>Kasper De Zoete</h4>
+                <h5>Netherlands</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/kasperdezoete/" target="_blank">{% render 'icon-instagram' %}@kasperdezoete</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="COLTON CARROL" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_COLTON-CARROL.jpg?v=1611664544">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>COLTON CARROL</h4>
+                <h5>usa</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/COLTONCARROLL_/" target="_blank">{% render 'icon-instagram' %}@COLTONCARROLL_</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="CONOR CARROL" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_CONOR-CARROLl.jpg?v=1611664640">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>CONOR CARROL</h4>
+                <h5>usa</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/conorcarroll_/" target="_blank">{% render 'icon-instagram' %}@conorcarroll_</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="THEO HJELLSTRÖM" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_THEO-HJELLSTROM.jpg?v=1611664747">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>THEO HJELLSTRÖM</h4>
+                <h5>sweden</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/THEOHJELLSTROM/" target="_blank">{% render 'icon-instagram' %}@THEOHJELLSTROM</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="BALDUR VILHELMSSON" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_baldur.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>BALDUR VILHELMSSON</h4>
+                <h5>iceland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/BALDURVILHELMSSON/" target="_blank">{% render 'icon-instagram' %}@BALDURVILHELMSSON</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="DAVE BROWN" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_DAVE-BROWN.jpg?v=1611664917">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>DAVE BROWN</h4>
+                <h5>canada</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/D_BR0WN/" target="_blank">{% render 'icon-instagram' %}@D_BR0WN</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="ZOLTÁN STRCUĽA" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_ZOLTAN-STRCULA_2.jpg?v=1611664992">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>ZOLTÁN STRCUĽA</h4>
+                <h5>SLOVAKIA</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/ZOLTANSTRCULA/" target="_blank">{% render 'icon-instagram' %}@ZOLTANSTRCULA</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="MAX DE VRIES" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0367/9987/3156/files/Lobster-Team-Portraits_MAX-DE-VRIES.jpg?v=1611665089">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>MAX DE VRIES</h4>
+                <h5>netherlands</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/MAX.DE.VRIES/" target="_blank">{% render 'icon-instagram' %}@MAX.DE.VRIES</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Juho Laine" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_juho.jpg?v=1634889878">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>Juho Laine</h4>
+                <h5>finland</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/juho_laine/" target="_blank">{% render 'icon-instagram' %}@juho_laine</a></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class="outlined-block h-100">
+              <img alt="Juho Laine" class="img-fluid" src="https://cdn.shopify.com/s/files/1/0486/9583/6828/files/LOB_TEAM_yosuke.jpg?v=1634889879">
+              <div class="team-info-wrapper p-3 px-md-4 pb-4">
+                <h4>Yosuke Akiyama</h4>
+                <h5>Japan</h5>
+                <p><a class="btn-about-instagram" href="https://www.instagram.com/ysk__g" target="_blank">{% render 'icon-instagram' %}@ysk__g</a></p>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+{% schema %}
+{
+  "name": "LPS About",
+  "tag": "section",
+  "class": "lps-about-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "About"
+    },
+    {
+      "type": "paragraph",
+      "content": "Code editable in sections/LPS-about.liquid"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS About"
+    }
+  ]
+}
+{% endschema %}

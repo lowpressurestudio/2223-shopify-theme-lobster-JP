@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "40809fde-c3ca-44d5-b65c-580dbb564079": {
+          "type": "badge_message",
+          "settings": {
+          }
+        },
+        "e0b25d74-bec2-4ba9-ab04-f942ff702d37": {
+          "type": "shipping_warranty_block",
+          "settings": {
+            "free_shipping_limit": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "40809fde-c3ca-44d5-b65c-580dbb564079",
+        "e0b25d74-bec2-4ba9-ab04-f942ff702d37"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_position": "left",
+        "gallery_layout": "lps_vert_thumbnail",
+        "media_size": "large",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "enable_complete_your_set": false,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "166374801986ff0293": {
+      "type": "LPS-product-pair",
+      "settings": {
+        "title": "Perfect Match",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "400293ce-a3b4-47dd-a064-ae8b00e5d979": {
+      "type": "LPS-product-size-table-travel",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "1",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "16647944654a00e71c": {
+      "type": "LPS-video-row",
+      "settings": {
+        "title": "VIDEO REVIEWS",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "51a2b5a6-e2de-495f-973d-3d7da6225422": {
+      "type": "LPS-product-buy-bar",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "166374801986ff0293",
+    "400293ce-a3b4-47dd-a064-ae8b00e5d979",
+    "product-recommendations",
+    "16647944654a00e71c",
+    "51a2b5a6-e2de-495f-973d-3d7da6225422"
+  ]
+}

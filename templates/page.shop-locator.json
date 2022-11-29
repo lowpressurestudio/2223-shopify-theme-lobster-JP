@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "16645499306cdd4ad4": {
+      "type": "LPS-shop-locator",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16645499306cdd4ad4"
+  ]
+}

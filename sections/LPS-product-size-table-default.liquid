@@ -1,0 +1,111 @@
+{{ 'LPS-section-size-table.css' | asset_url | stylesheet_tag }}
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+</style>
+
+<section id="lps-product-size-table-default-{{ section.id }}" class="lps-tabs lps-product-size-table-default page-width lps-size-table section-{{ section.id }}-padding">
+  <div id="size-table-anchor"></div>
+  <div class="row">
+    <div class="col-12 mt-3" id="sizechart">
+      <div class="lps-size-table-wrapper outlined-block p-0">
+        <table>
+          <tr>
+            <th>Size</th>
+            <td>S</td>
+            <td>M</td>
+            <td>L</td>
+            <td>XL</td>
+          </tr>
+          <tr>
+            <th>Natural Waist (cm)</th>
+            <td>79-84</td>
+            <td>84-89</td>
+            <td>89-94</td>
+            <td>94-102</td>
+          </tr>
+          <tr>
+            <th>Natural Waist (in)</th>
+            <td>31-33</td>
+            <td>33-35</td>
+            <td>35-37</td>
+            <td>37-40</td>
+          </tr>
+          <tr>
+            <th>Hip (cm)</th>
+            <td>94-98</td>
+            <td>98-103</td>
+            <td>103-108</td>
+            <td>108-116</td>
+          </tr>
+          <tr>
+            <th>Hip (in)</th>
+            <td>37-38.5</td>
+            <td>38.5-40.5</td>
+            <td>40.5-42.5</td>
+            <td>42.5-45.5</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "LPS Size Table Default",
+  "tag": "section",
+  "class": "lps-apparel-size-table-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Default Size Chart"
+    },
+    {
+      "type": "paragraph",
+      "content": "Displays the default size table."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Size Table Default"
+    }
+  ]
+}
+{% endschema %}

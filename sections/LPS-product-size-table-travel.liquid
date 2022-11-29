@@ -1,0 +1,154 @@
+{{ 'LPS-section-size-table.css' | asset_url | stylesheet_tag }}
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+</style>
+
+<section id="lps-product-size-table-travel-{{ section.id }}" class="lps-tabs lps-product-size-table-travel page-width lps-size-table section-{{ section.id }}-padding">
+  <div id="size-table-anchor"></div>
+  <ul class="row nav nav-tabs card-header-tabs" style="margin-left: -7.5px; margin-right: -7.5px;" data-bs-tabs="tabs">
+    <li class="nav-item col-12 mb-3">
+      <a class="nav-link active" aria-current="true" data-bs-toggle="tab" href="#sizechart">Travel {% if product.handle contains 'sleeve' %} Sleeve {% else %} Bags{% endif %} Size Chart</a>
+    </li>
+    {% comment %} <li class="nav-item col-6 mb-3">
+      <a class="nav-link" data-bs-toggle="tab" href="#howtomeasure">Dimensions</a>
+    </li> {% endcomment %}
+  </ul>
+  <div class="row">
+    <div class="col-12 tab-content mt-3">
+      <div class="tab-pane active" id="sizechart">
+        <div class="row justify-content-center">
+          <div class="col-12 lps-size-table-col">
+            <div class="lps-size-table-wrapper outlined-block p-0">
+        
+              {% if product.handle contains 'sleeve'%}
+              <div class="lps-size-table-wrapper p-0">
+                <table>
+                  <tr>
+                    <th>Sleeve Sizes</th>
+                    <td>S</td>
+                    <td>M</td>
+                    <td>L</td>
+                  </tr>
+                  <tr>
+                    <th>Width(cm)</th>
+                    <td>27.8</td>
+                    <td>29</td>
+                    <td>30.5</td>
+                  </tr>
+                  <tr>
+                    <th>Height(cm)</th>
+                    <td>142</td>
+                    <td>149</td>
+                    <td>156</td>
+                  </tr>
+                </table>
+              </div>
+              {% else %} 
+              <div class="lps-size-table-wrapper p-0">
+                <table>
+                  <tr>
+                    <th>Board Bag</th>
+                    <td>One Size</td>
+                  </tr>
+                  <tr>
+                    <th>Width(cm)</th>
+                    <td>34</td>
+                  </tr>
+                  <tr>
+                    <th>Height(cm)</th>
+                    <td>185</td>
+                  </tr>
+                  <tr>
+                    <th>Depth(cm)</th>
+                    <td>18</td>
+                  </tr>
+                </table>
+              </div>
+              {% endif %} 
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} <div class="tab-pane" id="howtomeasure">
+        <div class="row row-eq-height">
+          <div class="col-12 col-md-6">
+            <div class="gray-rounded-block h-100 text-center">
+              <img src="{{ 'travel-how-to-measure.png' | asset_img_url: '500x' }}" style="width: 50%">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="gray-rounded-block h-100 d-flex">
+              <p class="text-left mx-auto align-self-center" style="max-width: 70%; font-size: 1.8rem;">
+                1. Length<br>
+                <br><br>
+                2. Width
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+    </div>
+  </div>
+
+
+</section>
+
+{% schema %}
+{
+  "name": "LPS Size Table Travel",
+  "tag": "section",
+  "class": "lps-travel-size-table-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Travel Size Chart"
+    },
+    {
+      "type": "paragraph",
+      "content": "Displays the travel / bags size table."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+    "name": "LPS Size Table Travel"
+    }
+  ]
+}
+{% endschema %}

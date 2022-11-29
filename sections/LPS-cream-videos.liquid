@@ -1,0 +1,387 @@
+<style>
+.lps-cream-videos a.lps-cream-video-block-link {
+  display: block;
+  position: absolute;
+  top:0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.lps-cream-videos a.lps-cream-video-block-link:hover {
+  background-color: rgb(255,255,255,0.3);
+}
+.lps-cream-videos .lps-cream-video-block-bg {
+ background-size: cover;
+}
+.lps-cream-videos h2 {
+  font-size: 3.5rem;
+}
+.lps-cream-videos .titles h4 {
+  text-transform: uppercase;
+  margin: 0;
+}
+.lps-cream-videos .titles p {
+  text-transform: uppercase;
+  margin: 0;
+}
+.lps-cream-videos .btn.lps-cream-video-tag-link {
+  border-color: var(--black);
+  color: var(--black);
+  background-color: var(--white);
+}
+.lps-cream-videos .btn.lps-cream-video-tag-link:hover {
+  border-color: var(--black);
+  color: var(--white);
+  background-color: var(--black);
+}
+.lps-cream-videos a.btn-filter span {
+  display: inline-block;
+  background-color: #777;
+  color: var(--black);
+  border-radius: 99em;
+  width: 1em;
+  font-size: 1em;
+  line-height: 1em;
+  text-align: center;
+  margin-left: 0.5em;
+}
+#main-tags .lps-cream-video-block-link {
+  display: none;
+}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+</style>
+
+{%- for block in section.blocks -%}
+  {%- if block.settings.video_id != blank -%}
+    {%- assign firstid = block.settings.video_id -%}
+    {%- assign firsttitle = block.settings.title -%}
+    {%- assign firstsubtitle = block.settings.subtitle -%}
+    {%- assign firstdesc = block.settings.video_desc -%}
+    {%- assign firstdate = block.settings.date -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<section id="lps-cream-videos-{{ section.id }}" class="page-width lps-cream-videos section-{{ section.id }}-padding" style="position: relative;">
+  <div id="main-video" style="position:absolute;top:-10rem;"></div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="ratio ratio-16x9 outlined-block">
+        <iframe id="lobsterVideo" src="https://www.youtube.com/embed/{{ firstid }}?autoplay=1" title="YouTube video" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="row row-filter" style="position: relative;">
+    <div id="row-anchor" style="position:absolute;top:-9rem;"></div>
+    <div class="col-12">
+      <div class="p-3 outlined-block">
+        <p class="m-0">
+          <span>FILTERED BY:</span>
+        {% for block in section.blocks %}
+          {% if block.settings.video_tags != blank %}
+            {% assign filters = filters | append: block.settings.video_tags | append: ',' %}
+          {% endif %}
+        {% endfor %}
+        {% assign filters = filters | split: ',' %}
+        {% assign filters = filters | uniq %}
+        {% if filters != blank %}
+          {% for filter in filters %}
+            <a href="#1" style="display: none;" class="btn btn-secondary ps-3 pe-2 btn-filter {{ filter | strip | downcase | replace: " ", "-" }}" data-target="{{ filter | strip | downcase | replace: " ", "-" }}">{{ filter | strip | capitalize }}<span>x</span></a>
+          {% endfor %}
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 {% if section.settings.column_alignment == 'center' %} justify-content-center{% endif %}">
+    <div class="col-12 col-sm-8 col-lg-6 mb-4">
+      <div class="p-3 outlined-block h-100 d-flex flex-column">
+        <div class="flex-grow-1">
+        {% if firsttitle != blank %}<h2 id="main-title">{{ firsttitle }}</h2>{% endif %}
+        {% if firstsubtitle != blank %}<h4 id="main-subtitle" class="mt-3">{{ firstsubtitle }}</h4>{% endif %}
+        {% if firstdesc != blank %}<p id="main-desc" class="mt-3">{{ firstdesc }}</p>{% endif %}
+        </div>
+        <div class="d-flex justify-content-between">
+          <div id="main-tags" class="tags mt-3">
+          {% if filters != blank %}
+            {% for filter in filters %}
+              <a class="btn btn-secondary lps-cream-video-tag-link {{ filter | strip | downcase | replace: " ", "-" }}" data-tag="{{ filter | strip | downcase | replace: " ", "-" }}" href="#1">{{ filter | strip | capitalize }}</a> 
+            {% endfor %}
+          {% endif %}
+          </div>
+          {% if firstdate != blank %}
+          <div class="date mt-3">
+            <p id="main-date" class="pt-1 mb-0">{{ firstdate }}</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {%- for block in section.blocks -%}
+    {% case block.type %}
+    {%- when 'video' -%}   
+    {% if block.settings.video_id != blank and block.settings.thumb_image != blank %}
+    {% assign tags_classes = "" %}
+    {% if block.settings.video_tags != blank %}
+      {% assign tags = block.settings.video_tags | split: ',' %}
+      {% for tag in tags %}
+        {% assign class = tag | strip | downcase | replace: " ", "-" %}
+        {% assign tags_classes = tags_classes | append: " " | append: class %}
+      {% endfor %}
+    {% endif %}
+    <div class="col-6 col-sm-4 col-lg-3 mb-4 video-block{{ tags_classes }}">
+      <div class="p-3 outlined-block h-100">
+        <div class="row">
+          <div class="col-12" {% if block.settings.video_anchor_id != blank %} id="{{ block.settings.video_anchor_id }}"{% endif %}>
+            <div class="outlined-block" style="position:relative;">
+              <a class="lps-cream-video-block-link" href="#1" data-videoid="{{ block.settings.video_id }}" data-videotitle="{{ block.settings.title }}" data-videosubtitle="{{ block.settings.subtitle }}" data-videodesc="{{ block.settings.video_desc }}" data-date="{{ block.settings.date }}" data-tags="{{ block.settings.video_tags }}"></a>
+              <div class="lps-cream-video-block-bg ratio ratio-1x1" style="background-image: url('{{ block.settings.thumb_image | img_url: '800x' }}');"></div>
+            </div>
+          </div>
+          <div class="col-12">
+    	      {% if block.settings.title != blank or block.settings.video_subtitle != blank %}
+            <div class="titles mt-3">
+	            {% if block.settings.title != blank %}
+              <h4>{{ block.settings.title }}</h4>
+	            {% endif %}
+	            {% if block.settings.video_subtitle != blank %}
+              <p>{{ block.settings.video_subtitle }}</p>
+	            {% endif %}
+            </div>
+    	      {% endif %}
+            {% if block.settings.video_tags != blank or block.settings.date != blank %}
+            <div class="d-flex {% if block.settings.video_tags != blank %}justify-content-between{% else %}justify-content-end{% endif %}">
+              {% if block.settings.video_tags != blank %}
+              <div class="tags mt-3">
+                {% for tag in tags %} 
+                <a class="btn btn-secondary lps-cream-video-tag-link" data-tag="{{ tag | strip | downcase | replace: " ", "-" }}" href="#1">{{ tag | strip | capitalize }}</a> 
+                {% endfor %}
+              </div>
+              {% endif %}
+              {% if block.settings.date != blank %}
+              <div class="date mt-3">
+                <p class="pt-1 mb-0">{{ block.settings.date }}</p>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {%- endcase -%}
+	  {%- endfor -%}
+
+	</div>
+</section>
+
+<script>
+  
+  $( document ).ready(function() {
+    $(".lps-cream-video-block-link").click(function(e) {
+    	e.preventDefault();
+      changeVideo($(this).attr("data-videoid"), $(this).attr("data-videotitle"), $(this).attr("data-videosubtitle"), $(this).attr("data-videodesc"), $(this).attr("data-date"), $(this).attr("data-tags"));
+      $([document.documentElement, document.body]).animate({ scrollTop: $("#main-video").offset().top}, 100);
+    });
+    $(".lps-cream-video-tag-link").click(function(e) {
+    	e.preventDefault();
+      $('.'+$(this).attr("data-tag")).show();
+      updateFilters();
+      // change video to first visible
+      var video_video_block_link = $(".video-block:visible").first().find('.lps-cream-video-block-link')
+      var videoid = video_video_block_link.attr("data-videoid");
+      var videotitle = video_video_block_link.attr("data-videotitle");
+      var videosubtitle = video_video_block_link.attr("data-videosubtitle");
+      var videodesc = video_video_block_link.attr("data-videodesc");
+      var date = video_video_block_link.attr("data-date");
+      var tags = video_video_block_link.attr("data-tags");
+      changeVideo(videoid, videotitle, videosubtitle, videodesc, date, tags);
+      // $([document.documentElement, document.body]).animate({ scrollTop: $("#row-anchor").offset().top}, 100);
+    });
+    $(".btn-filter").click(function(e) {
+      $(this).hide();
+      updateFilters();
+    });
+    $(".video-block").hide();
+    updateFilters();
+    var firstTags = $(".lps-cream-video-block-link").first().attr("data-tags");
+    updateMainTags(firstTags);
+  });
+  function changeVideo(newsrc, title, subtitle, desc, date, tags) {
+    var newsrcline = "https://www.youtube.com/embed/"+newsrc+"?autoplay=1";
+    $("#lobsterVideo").attr("src", newsrcline);
+    $("#main-title").html(title);
+    $("#main-subtitle").html(subtitle);
+    $("#main-desc").html(desc);
+    $("#main-date").html(date);
+    updateMainTags(tags);
+  }
+  function updateMainTags(tags) {
+    $("#main-tags a").hide();
+    var tags = tags.toLowerCase();
+    var tagsArr = tags.split(',');
+    var tagsArrTrimmed = [];
+    let i = 0;
+    while (i < tagsArr.length) {
+      var trimmed = tagsArr[i].trim();
+      trimmed = trimmed.replace(" ", "-");
+      tagsArrTrimmed.push(trimmed);
+      i++;
+    }
+    let j = 0;
+    while (j < tagsArrTrimmed.length) {
+      $("#main-tags a."+tagsArrTrimmed[j]).show();
+      j++;
+    }
+  }
+  function updateFilters() {
+    var filter_string = '';
+    $(".btn-filter:visible").each( function () {
+      filter_string += '.'+$(this).attr("data-target");
+    });
+    if (!filter_string) {
+      console.log("hide row");
+      $('.row-filter').fadeTo(100, 0).css("height","1px");
+    } else {
+      console.log("show row");
+      $('.row-filter').fadeTo(100, 1).css("height","auto");
+    }
+    // console.log("filter_string - "+filter_string);
+    $(".video-block:not("+filter_string+")").hide();
+    $(".video-block"+filter_string).fadeIn(300);
+  }
+  
+</script> 
+
+{% schema %}
+{
+  "name": "LPS Cream Videos",
+  "class": "lps-multicolumn-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Column Alignment"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Left"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Cream TV Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumb_image",
+          "label": "Thumbnail Image",
+          "info": "Ideally approx 800x800px"
+        },
+        {
+          "type": "text",
+          "id": "video_anchor_id",
+          "label": "Video Anchor ID",
+          "info": "Direct link to video on page: i.e. https://lobstersnowboards.com/pages/cream-tv#VIDEO_ANCHOR_ID"
+        },
+        {
+          "type": "text",
+          "id": "video_id",
+          "label": "YouTube Video ID",
+          "info": "e.g. szibupCjSVo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Video Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Video Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Post Date"
+        },
+        {
+          "type": "textarea",
+          "id": "video_desc",
+          "label": "Video Description"
+        },
+        {
+          "type": "textarea",
+          "id": "video_tags",
+          "label": "Video Tags"
+        },
+        {
+          "type": "paragraph",
+          "content": "Comma separated list of tags to filter videos."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Cream Videos",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

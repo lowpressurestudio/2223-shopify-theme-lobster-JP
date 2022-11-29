@@ -1,0 +1,219 @@
+{
+  "sections": {
+    "1663663539b90ba89d": {
+      "type": "LPS-image-banner",
+      "settings": {
+        "container-ratio-desktop": "21_9",
+        "container-ratio-mobile": "4_5",
+        "title": "BLACK FRIDAY WEEK | Up to 45% off",
+        "heading_font_size": 46,
+        "heading_alignment": "right bottom",
+        "cta_1": "Shop new gear -35%",
+        "cta_1_link": "shopify:\/\/collections\/drop-3",
+        "cta_1_new_window": false,
+        "cta_2": "Shop outlet -45%",
+        "cta_2_link": "shopify:\/\/collections\/snowboard-clearance",
+        "cta_2_new_window": false,
+        "cta_3": "",
+        "cta_3_link": "",
+        "cta_3_new_window": false,
+        "cta_font_size": 14,
+        "bg_image": "shopify:\/\/shop_images\/HEADER_fridge.jpg",
+        "bg_image_mobile": "shopify:\/\/shop_images\/fridge-header-mobile.jpg",
+        "bg_alignment": "center center",
+        "bg_color": "#bac2ba",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "166384059768c70a04": {
+      "type": "LPS-social-sign-up",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "2023-boards",
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "1663684025f57ff6a6": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "2023-bindings",
+        "products_to_show": 4,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "16637669096834f6a7": {
+      "type": "LPS-multicolumn",
+      "blocks": {
+        "16637669096b6afff7-0": {
+          "type": "column",
+          "settings": {
+            "title": "About Us",
+            "title_font_size": 36,
+            "title_color": "#000000",
+            "heading_alignment": "right bottom",
+            "cta": "who we are",
+            "block_link": "shopify:\/\/pages\/about",
+            "new_window": true,
+            "cta_font_size": 14,
+            "cta_color_text": "#ffffff",
+            "cta_color_bg": "#000000",
+            "bg_image": "shopify:\/\/shop_images\/lobster-snowboards-2023-drop-3-multi-column-about-NEW_HOVER.jpg",
+            "bg_image_hover": "shopify:\/\/shop_images\/lobster-snowboards-2023-drop-3-multi-column-about-NEW.jpg",
+            "bg_color": ""
+          }
+        },
+        "16637669096b6afff7-1": {
+          "type": "column",
+          "settings": {
+            "title": "Cream TV",
+            "title_font_size": 36,
+            "title_color": "#000000",
+            "heading_alignment": "right bottom",
+            "cta": "watch now",
+            "block_link": "shopify:\/\/pages\/cream-tv",
+            "new_window": false,
+            "cta_font_size": 14,
+            "cta_color_text": "#ffffff",
+            "cta_color_bg": "#000000",
+            "bg_image": "shopify:\/\/shop_images\/FridgePack_cream-TV.jpg",
+            "bg_image_hover": "shopify:\/\/shop_images\/FRIDGE_PACK_liquid.jpg",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "16637669096b6afff7-0",
+        "16637669096b6afff7-1"
+      ],
+      "settings": {
+        "title": "",
+        "block_ratio": "1_1",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "disabled": true,
+      "blocks": {
+        "collection-0": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "product": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "second_image": false
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-0",
+        "product",
+        "collection-1"
+      ],
+      "settings": {
+        "heading": "Multimedia collage",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "16638541010b014492": {
+      "type": "LPS-image-banner",
+      "settings": {
+        "container-ratio-desktop": "26_9",
+        "container-ratio-mobile": "4_5",
+        "title": "Cream of The Week",
+        "heading_font_size": 38,
+        "heading_alignment": "right bottom",
+        "cta_1": "Contest starts 12-01",
+        "cta_1_link": "https:\/\/www.dropbox.com\/request\/MgKvREva5GmVpYFgwBl8",
+        "cta_1_new_window": true,
+        "cta_2": "",
+        "cta_2_link": "",
+        "cta_2_new_window": false,
+        "cta_3": "",
+        "cta_3_link": "",
+        "cta_3_new_window": false,
+        "cta_font_size": 13,
+        "bg_image": "shopify:\/\/shop_images\/Frame_203.png",
+        "bg_image_hover": "shopify:\/\/shop_images\/Frame_204_1600x_43ea06ca-2e56-4388-b0be-4270d2ccb074.png",
+        "bg_alignment": "center center",
+        "bg_color": "#f0f0f0",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "1663663539b90ba89d",
+    "166384059768c70a04",
+    "featured_collection",
+    "1663684025f57ff6a6",
+    "16637669096834f6a7",
+    "collage",
+    "16638541010b014492"
+  ]
+}

@@ -1,0 +1,200 @@
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+#lps-logo-ticker-{{ section.id }} .overline {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+#lps-logo-ticker-{{ section.id }} .outlined-block-ticker {
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+#lps-logo-ticker-{{ section.id }} .announcement-bar {
+  border-bottom: none;
+}
+#lps-logo-ticker-{{ section.id }} .announcement-bar__message {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+{%- if section.settings.ticker -%}
+#lps-logo-ticker-{{ section.id }} .marquee {
+  /* style for individual block */
+  --spacing: {{ section.settings.spacing }}em;
+  --speed: {{ section.settings.speed }}s;
+}
+{%- endif -%}
+</style>
+
+<section id="lps-logo-ticker-{{ section.id }}" class="section-{{ section.id }}-padding">
+  <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+    {%- if section.settings.boxed == true -%}
+    <div class="page-width">
+      <div class="outlined-block-ticker color-{{ section.settings.color_scheme }} gradient color-{{ section.settings.color_scheme }} gradient">
+    {%- else -%}
+    <div>
+      <div class="overline color-{{ section.settings.color_scheme }} gradient color-{{ section.settings.color_scheme }} gradient">
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      {%- if section.settings.link != blank -%}
+        <a href="{{ section.settings.link }}" class="announcement-bar__link link link--text focus-inset">
+      {%- endif -%}
+        {%- if section.settings.ticker -%}
+        <div class="announcement-bar__message marquee" style=""><span>{{ section.settings.text | escape }}</span></div>
+        {%- else -%}
+        {%- if section.settings.boxed == false -%}
+        <div class="page-width">
+        {%- endif -%}
+          <p class="announcement-bar__message {{ section.settings.text_alignment }}">
+            <span>{{ section.settings.text | escape }}</span>
+          </p>
+        {%- if section.settings.boxed == false -%}
+        </div>
+        {%- endif -%}
+        {%- endif -%}
+      {%- if section.settings.link != blank -%}
+        </a>
+      {%- endif -%}
+    {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LPS Text Ticker",
+  "tag": "section",
+  "class": "lps-text-ticker-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "default": "Welcome to our store",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "boxed",
+      "default": true,
+      "label": "Display in rounded container."
+    },
+    {
+      "type": "checkbox",
+      "id": "ticker",
+      "default": false,
+      "label": "Display as ticker"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "em",
+      "label": "Spacing (if ticker is checked)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 1,
+      "max": 25,
+      "step": 1,
+      "unit": "s",
+      "label": "Speed (if ticker is checked)",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text alignment (if not ticker)"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "accent-1",
+      "label": "Accent 1"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Text Ticker"
+    }
+  ]
+}
+{% endschema %}

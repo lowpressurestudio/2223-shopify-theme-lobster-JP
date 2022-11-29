@@ -1,0 +1,185 @@
+
+<style>
+
+.lps-product-pair .collection-image-col {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.lps-product-pair h1 {
+  font-size: 3.5rem;
+}
+.lps-product-pair h2 a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+</style>
+
+{% for collection in product.collections %}
+  {% assign starts_with = collection.title | slice: 0,12 | downcase %}
+  {% if starts_with == "product pair"%}
+    {% assign paired_collection = collection %}
+    {% for possible_product in collection.products %}
+      {% if possible_product.title != product.title %}
+        {% assign paired_product = possible_product %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if paired_product %}
+<!-- PAIRED IN COLLECTION: {{ paired_collection.title }} -->
+<!-- PAIRED PRODUCT FROM COLLECTION: {{ paired_product.title }} -->
+<section id="lps-product-pair-{{ section.id }}" class="lps-product-pair page-width section-{{ section.id }}-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="h-100 px-4 px-md-0" style="padding: 0;background-color: #f8f8f8; border-radius: 8px;">
+        <div class="row pt-5 pt-md-0">
+          <div class="col-12 col-md-6 col-lg-7 p-0 collection-image-col" style="background-image: url({{ paired_collection.image | image_url: width: 1000 }});min-height:250px;"> 
+            <div class="mx-3 m-md-5">
+              <h1>{{ section.settings.title }}</h1> 
+            </div>
+          </div>
+          <div class="col-12 d-md-none"> {% comment %} MOBILE TITLE {% endcomment %}
+            <h2 style="font-size: 1.5em"><a href="{{ paired_product.url }}">{{ paired_product.title }}</a></h2>
+          </div>
+          <div class="col-6 col-md-3 col-lg-2 p-0">
+            <a href="{{ paired_product.url }}"><img class="img-fluid" src="{{ paired_product.featured_media | image_url: width: 600 }}"></a>
+          </div>
+          <div class="col-6 col-md-3 col-lg-3 py-4">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="d-none d-md-block"><a href="{{ paired_product.url }}">{{ paired_product.title }}</a></h2> {% comment %} DESKTOP TITLE {% endcomment %}
+                <div>
+                  <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ paired_product.url }}" data-update-url="false">
+                    {%- for option in paired_product.options_with_values -%}
+                        <fieldset class="js product-form__input">
+                          <legend class="form__label">{{ option.name }}</legend>
+                          {%- for value in option.values -%}
+                            <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                  name="{{ option.name }}"
+                                  value="{{ value | escape }}"
+                                  form="{{ product_form_id }}"
+                                  {% if option.selected_value == value %}checked{% endif %}
+                            >
+                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                              {{ value }}
+                            </label>
+                          {%- endfor -%}
+                        </fieldset>
+                    {%- endfor -%}
+                    <script type="application/json">
+                      {{ paired_product.variants | json }}
+                    </script>
+                  </variant-radios>
+                </div>
+                <h2>{{ paired_product.price | money }}</h2>
+              </div>
+              <div class="col-12">
+                <product-form class="product-form mt-3">
+                  <div class="product-form__error-message-wrapper" role="alert" hidden>
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                      <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                      <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                      <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                      <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                    </svg>
+                    <span class="product-form__error-message"></span>
+                  </div>
+                  <form method="post" action="/cart/add" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                    <input type="hidden" name="form_type" value="product">
+                    <input type="hidden" name="utf8" value="✓">
+                    <input type="hidden" name="id" value="{{ paired_product.variants.first.id }}" />
+                    <input type="hidden" id="quantity" name="quantity" value="1"/>
+                    <div class="product-form__buttons">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--secondary" style="width: auto;padding-left: 4rem; padding-right:4rem;">
+                        <span>Add to cart</span>
+                        <div class="loading-overlay__spinner hidden">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
+                  </form>
+                </product-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "LPS Product Pair",
+  "tag": "section",
+  "class": "lps-product-pair",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Perfect Match"
+    },
+    {
+      "type": "paragraph",
+      "content": "Displays a paired product section with the current product, plus the other product in a 2-product collection (e.g. board / binding)."
+    },
+    {
+      "type": "paragraph",
+      "content": "The collection title must be \"Product Pair XXXX\"."
+    },
+    {
+      "type": "paragraph",
+      "content": "Displays the Collection image if set."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Product Pair"
+    }
+  ]
+}
+{% endschema %}

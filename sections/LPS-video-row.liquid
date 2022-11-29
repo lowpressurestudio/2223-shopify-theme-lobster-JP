@@ -1,0 +1,135 @@
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+.horizontal-snap {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0;
+  height: auto;
+  padding: 0;
+  max-width: 100%;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+.gallery-video:before {
+  content:'';
+  display: block;
+  position: absolute;
+  right:0;
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.horizontal-snap .video-wrapper {
+  scroll-snap-align: start;
+  width: 65vw;
+  height: 0;
+  padding-bottom: 56.25%;
+  border-right: 1px solid var(--black);
+}
+.horizontal-snap .video-wrapper:last-child {
+  border-right: none;
+}
+@media only screen and (max-width: var(--page-width)) {
+  .horizontal-snap .video-wrapper {
+    width: calc(var(--page-width) * .7);
+  }
+}
+
+</style>
+
+{% assign count = product.metafields.global.videos.value.size %} 
+
+{% if count > 0 %} 
+<section id="lps-video-row-{{ section.id }}" class="page-width lps-video-row section-{{ section.id }}-padding">
+  {% if section.settings.title != blank %}
+  <div class="col-12 mb-4">
+    <h1 class="section-title">{{ section.settings.title | escape }}</h1>
+  </div>
+  {% endif %}
+  <div class="outlined-block">
+    <div class="my-0 row justify-content-center">
+    {% if count == 1 %} 
+      <div class="col-12">
+        <div class="video-wrapper ratio ratio-16x9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ product.metafields.global.videos.value[0] }}" width="100%" height="100%"  frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    {% else %}
+      <div class="col-12 gallery-video" style="overflow-x: scroll;position: relative;">
+        <div class="horizontal-snap">
+        {% for video in product.metafields.global.videos.value %}
+          <div class="video-wrapper ratio ratio-16x9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video }}" width="100%" height="100%"  frameborder="0" allowfullscreen></iframe>
+          </div>
+        {% endfor %} 
+        </div>
+      </div>
+    {% endif %} 
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "LPS Video Row",
+  "class": "lps-video-row-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+       "content": "Displays videos from the videos metafield. Enter the video ID/s in the videos metafield on the product admin page."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Videos",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Video Row"
+    }
+  ]
+}
+{% endschema %}
