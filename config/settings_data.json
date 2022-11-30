@@ -155,7 +155,7 @@
         "type": "header",
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify:\/\/shop_images\/logo-lobster.png",
+          "logo": "shopify:\/\/shop_images\/lobster_header_logo_500x_b8b08a4c-7101-4087-9e45-771f29a59722.png",
           "logo_width": 90,
           "logo_position": "middle-left",
           "menu": "main-menu",
@@ -271,7 +271,6 @@
         ],
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify:\/\/shop_images\/LOBSTER_rider-Owned.png",
           "newsletter_enable": true,
           "show_social": true,
           "enable_country_selector": false,
@@ -285,21 +284,7 @@
     },
     "content_for_index": [
 
-    ],
-    "blocks": {
-      "14060646107696862457": {
-        "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "12657775114333427046": {
-        "type": "shopify:\/\/apps\/essential-countdown-timer-bar\/blocks\/app_embed\/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
-        "disabled": false,
-        "settings": {
-        }
-      }
-    }
+    ]
   },
   "presets": {
     "Default": {
