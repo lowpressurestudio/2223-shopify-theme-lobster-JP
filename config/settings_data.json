@@ -135,9 +135,9 @@
           "announcement-bar-0": {
             "type": "announcement",
             "settings": {
-              "text": "BLACK FRIDAY DEALS ALL WEEK  -  UP TO 45% MONDAY & TUESDAY | 40% WEDNESDAY & THURSDAY & FRIDAY | 35% SATURDAY & SUNDAY & MONDAY",
+              "text": "＊LobsterのWebサイト年末年始営業のご案内 ・年内最終注文受付: 12月27日の午前中 ・年内最終発送: 12月27日 ・年始1月6日より通常発送",
               "ticker": true,
-              "spacing": 84,
+              "spacing": 70,
               "speed": 20,
               "text_alignment": "center",
               "color_scheme": "accent-1",
