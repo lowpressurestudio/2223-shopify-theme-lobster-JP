@@ -38,7 +38,7 @@
 <script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_eu }}"></script>
 {%- elsif cart.currency.iso_code == "CAD" -%}
 <script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_ca }}"></script>
-{%- else -%}
+{%- elsif cart.currency.iso_code == "USD" -%}
 <script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_api_code_us }}"></script>
 {%- endif -%}
 
@@ -67,7 +67,7 @@
           {%- else -%}
           <p class="m-0">Enter a Klaviyo code in Theme Settings > KLAVIYO > Klaviyo Newsletter Embed.</p>
           {%- endif -%}
-        {%- else -%}
+        {%- elsif cart.currency.iso_code == "USD" -%}
           {%- if settings.klaviyo_newsletter_code_us != blank -%}
           {{ settings.klaviyo_newsletter_code_us }}
           {%- else -%}
