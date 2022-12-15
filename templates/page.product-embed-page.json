@@ -1,0 +1,32 @@
+{
+  "layout": "password",
+  "sections": {
+    "1664374089964fa6eb": {
+      "type": "LPS-text-ticker",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "text": "",
+        "boxed": false,
+        "ticker": false,
+        "spacing": 16,
+        "speed": 13,
+        "text_alignment": "center",
+        "color_scheme": "accent-1",
+        "link": ""
+      }
+    },
+    "c6ae479e-a107-499e-b048-9757b7157d85": {
+      "type": "LPS-klaviyo-signup",
+      "settings": {
+        "logo": "shopify:\/\/shop_images\/logo-lobster.png",
+        "bg_color": "#51ff00",
+        "bg-video-url": ""
+      }
+    }
+  },
+  "order": [
+    "1664374089964fa6eb",
+    "c6ae479e-a107-499e-b048-9757b7157d85"
+  ]
+}
