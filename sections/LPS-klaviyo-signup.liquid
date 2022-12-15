@@ -1,0 +1,159 @@
+<style>
+:root { 
+  --black: #000; /* LOBSTER BLACK */
+  --white: #fff; /* LOBSTER WHITE */
+  --lime: #00FF00; /* LOBSTER LIME */
+  --cyan: #00E0FF; /* LOBSTER CYAN */
+  --purple: #8E7FFF; /* LOBSTER PURPLE */
+  --grey: #D9D9D9; /* LOBSTER GREY: heading background */
+  --light-grey: #F3F3F3; /* LOBSTER LIGHT GREY: page background */
+  --img-bg: #fff; /* LOBSTER IMG BG */
+  --radius: 12px;
+}
+@font-face {
+    font-family: 'URWDIN-Demi';
+    src:  url('{{ 'urw-din-demi.woff2' | asset_url }}') format('woff2'),
+          url('{{ 'urw-din-demi.woff' | asset_url }}') format('woff'),
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('{{ 'inter-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'inter-webfont.woff' | asset_url }}') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+html {
+  height: -webkit-fill-available; /* We have to fix html height */
+}
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+* {
+    font-family: 'inter', sans-serif !important;
+}
+body {
+  font-size: 1.4rem;
+}
+.lps-klaviyo-signup {
+  height: 100% !important;
+}
+input.form-control {
+  border-radius: var(--radius);
+  border: 1px solid var(--black);
+}
+.klaviyo-signup {
+    background-size: cover;
+}
+.klaviyo-signup .outlined-block {
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    border-radius: var(--radius);
+}
+
+.btn-primary,
+.btn-secondary {
+  color: var(--white);
+  background-color: var(--black);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  font-size: 1.2rem;
+}
+#bgVideo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+</style>
+
+<div id="lps-password-{{ section.id }}" class="klaviyo-signup h-100" style="background-color: {{ section.settings.bg_color }};{% if section.settings.bg-image != blank %}background-image: url({{ section.settings.bg-image | img_url: '1600x' }});{% endif %}"> 
+  <div class="container-fluid h-100" style="position:relative;z-index:2;">
+    <div class="container h-100" style="max-width: 1200px;">
+      <div class="row justify-content-center h-100 d-md-flex flex-column justify-content-between align-items-center">
+        <div class="col-12 pt-3 px-4 px-md-5 mt-4"></div>
+        <div class="col-12 col-lg-6 py-3 px-4 px-md-5">
+          <div class="outlined-block p-5 form-block">
+            {%- if section.settings.logo != blank -%}
+            <div class="logo mb-4">
+              <img style="max-width: 280px;" src="{{ section.settings.logo | img_url: '600x'}}">
+            </div>
+            {%- endif -%}
+            <div class="klaviyo-form">
+              {{ page.content }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 py-3 px-4 px-md-5 mb-4">
+          <div class="outlined-block p-3 pb-0">
+            <p class="mb-0"><span style="display: inline-block;margin-right: 1rem;">JOIN OUR COMMUNITY:</span>
+            {%- if settings.social_youtube_link != blank -%}<a class="btn btn-secondary mb-3 mb-md-0 me-3" target="_blank" href="{{ settings.social_youtube_link }}">YouTube</a>{%- endif -%}
+            {%- if settings.social_discord_link != blank -%}<a class="btn btn-secondary mb-3 mb-md-0 me-3" target="_blank" href="{{ settings.social_discord_link }}">Discord</a>{%- endif -%}
+            {%- if settings.social_instagram_link != blank -%}<a class="btn btn-secondary mb-3 mb-md-0 me-3" target="_blank" href="{{ settings.social_instagram_link }}">Instagram</a>{%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}<a class="btn btn-secondary mb-3 mb-md-0 me-3" target="_blank" href="{{ settings.social_tiktok_link }}">Tiktok</a>{%- endif -%}
+            {%- if settings.social_spotify_link != blank -%}<a class="btn btn-secondary mb-3 mb-md-0 me-3" target="_blank" href="{{ settings.social_spotify_link }}">Spotify</a>{%- endif -%}
+            <p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- if section.settings.bg-video-url != blank -%}
+  <video autoplay muted loop id="bgVideo" style="z-index:1;">
+    <source src="{{ section.settings.bg-video-url }}" type="video/mp4">
+  </video> 
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "LPS Klaviyo Signup",
+  "tag": "section",
+  "class": "lps-klaviyo-signup",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows klaviyo embed form — paste embed into page content."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#F0F0F0"
+    },
+    {
+      "type": "text",
+      "id": "bg-video-url",
+      "label": "BG video URL",
+      "info": "Copy URL from settings > files"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "BG Image"
+    },
+    {
+      "type": "header",
+      "content": "Social Buttons"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add social links to Theme Settings > Social Media."
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Klaviyo Signup"
+    }
+  ]
+}
+{% endschema %}
