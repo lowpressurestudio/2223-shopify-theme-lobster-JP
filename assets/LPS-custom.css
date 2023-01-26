@@ -19,6 +19,10 @@
     font-display: swap;
 }
 
+.bg-fridge {
+  background-color: #F3F3F3;
+}
+
 .page-width.page-width--narrow {
     max-width: var(--page-width);
 }
@@ -889,4 +893,16 @@ color:rgb(255, 255, 255);
   background-color: var(--black);
 }
 
+/* EASYGIFT FREE ITEM */
+
+#aca-modal-container {
+  box-shadow: none !important;
+  border-radius: var(--radius) !important;
+}
+.aca-product-button {
+  background-color: var(--cyan) !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--black) !important;
+  color: var(--black) !important;
+}
 
