@@ -187,8 +187,15 @@ $(document).ready(function() {
             scrollTop: ($('.error-msg').first().offset().top - 200)
         },500);
       }, 1500);    
-
   }  
+  
+  setTimeout(
+    function() {
+      $("#customer_country option[value='Norway']").remove();
+      $("#customer_country option[value='Switzerland']").remove();
+      $("#customer_country option[value='Iceland']").remove();
+  }, 1500);
+  
 });
 
 </script>
