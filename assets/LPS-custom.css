@@ -540,6 +540,7 @@ h3.card__heading.h5 {
   background-size: cover;
   position: relative;
 }
+.lps-banner h2,
 .lps-multicolumn h2,
 .lps-image-banner h2 {
   display: inline-block;
@@ -550,6 +551,7 @@ h3.card__heading.h5 {
   /* border: 1px solid var(--black); */
   box-shadow: 0 0 0.5em rgb(0,0,0,0.04);
 }
+.lps-banner .btn.btn-cta,
 .lps-image-banner .btn.btn-cta {
   background-color: var(--cyan);
   color: var(--black);

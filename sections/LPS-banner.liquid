@@ -1,0 +1,503 @@
+{% comment %} STYLES in LPS-custom.css (.lps-banner) {% endcomment %}
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+#lps-banner-section-{{ section.id }} .lps-banner {
+  background-position: {{ section.settings.bg_alignment }};
+  aspect-ratio: {{ section.settings.container-ratio-mobile | replace: "_", " / " }};
+}
+@media (min-width: 750px) {
+  #lps-banner-section-{{ section.id }} .lps-banner {
+    aspect-ratio: {{ section.settings.container-ratio-desktop | replace: "_", " / " }};
+  }
+}
+h2.heading-{{ section.id }} {
+  font-size:{{ section.settings.heading_font_size | times: 0.7 | round }}px;
+}
+@media (min-width: 750px) {
+  h2.heading-{{ section.id }} {
+    font-size:{{ section.settings.heading_font_size | times: 0.85 | round }}px;
+  }
+}
+@media (min-width: 1200px) {
+  h2.heading-{{ section.id }} {
+    font-size:{{ section.settings.heading_font_size }}px;
+  }
+}
+a.btn-cta-{{ section.id }} {
+  font-size:{{ section.settings.cta_font_size }}px;
+  background-color: var(--{{ section.settings.cta_button_colour }}) !important;
+  {% if section.settings.cta_button_colour == 'black' %}
+  color: var(--white) !important;
+  {% endif %}
+}
+
+
+</style>
+
+<div id="lps-banner-section-{{ section.id }}" class="{% if section.settings.full_width_container == false %}page-width {% endif %}section-{{ section.id }}-padding">
+  <div class="lps-banner{% if section.settings.full_width_container == false %} outlined-block{% endif %}" style="background-color:{{ section.settings.bg_color }};position:relative;">
+    
+    {% if section.settings.video != blank or section.settings.video_mobile != blank %}
+	  <div class="video-wrapper">
+    {% if section.settings.video != blank %}
+      {% assign desktop_classes = "" %}
+      {% if section.settings.video_mobile != blank %}
+        {% assign desktop_classes = "d-none d-md-block" %}
+      {% endif %}
+      <div class="{{ desktop_classes }}">
+        {{ section.settings.video | video_tag: image_size: '1000x', loop: true, autoplay: true, muted: true }}
+      </div>
+    {%- endif -%}
+    {% if section.settings.video_mobile != blank %}
+      {% assign mobile_classes = "" %}
+      {% if section.settings.video != blank %}
+        {% assign mobile_classes = "d-md-none" %}
+      {% endif %}
+      <div class="{{ mobile_classes }}">
+        {{ section.settings.video_mobile | video_tag: image_size: '800x', loop: true, autoplay: true, muted: true }}
+      </div>
+    {%- endif -%}
+    </div>
+    {%- endif -%}
+    
+    {% if section.settings.bg_image != blank or section.settings.bg_image_mobile != blank %}
+	<div class="image-wrapper">
+    {% if section.settings.bg_image != blank %}
+      {% assign desktop_classes = "" %}
+      {% if section.settings.bg_image_mobile != blank %}
+        {% assign desktop_classes = "d-none d-md-block" %}
+      {% endif %}
+      <div class="{{ desktop_classes }}">
+		  <img src="{{ section.settings.bg_image | img_url: '2200x' }}" style="width: 100%;">
+	  </div>
+    {%- endif -%}
+    {% if section.settings.bg_image_mobile != blank %}
+      {% assign mobile_classes = "" %}
+      {% if section.settings.bg_image != blank %}
+        {% assign mobile_classes = "d-md-none" %}
+      {% endif %}
+      <div class="{{ mobile_classes }}">
+		  <img src="{{ section.settings.bg_image_mobile | img_url: '1200x' }}" style="width: 100%;">
+	  </div>
+    {%- endif -%}
+	</div>
+    {%- endif -%}
+	
+    {%- if section.settings.container_alignment contains 'top' -%}
+    {%- assign vert_align = 'align-items-start' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment contains 'center' -%}
+    {%- assign vert_align = 'align-items-center' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment contains 'bottom' -%}
+    {%- assign vert_align = 'align-items-end' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment_mobile contains 'top' -%}
+    {%- assign vert_align_mobile = 'align-items-start' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment_mobile contains 'center' -%}
+    {%- assign vert_align_mobile = 'align-items-center' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment_mobile contains 'bottom' -%}
+    {%- assign vert_align_mobile = 'align-items-end' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment contains 'left' -%}
+    {%- assign hori_align = 'justify-content-start' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment contains 'middle' -%}
+    {%- assign hori_align = 'justify-content-center' -%}
+    {%- endif -%}
+    {%- if section.settings.container_alignment contains 'right' -%}
+    {%- assign hori_align = 'justify-content-end' -%}
+    {%- endif -%}
+
+  	{% assign cta_count = 0 %}
+  	{% if section.settings.cta_1 != blank and section.settings.cta_1_link != blank %}
+    	{% assign cta_count = cta_count | plus: 1 %}
+  	{%- endif -%}
+  	{% if section.settings.cta_2 != blank and section.settings.cta_2_link != blank %}
+    	{% assign cta_count = cta_count | plus: 1 %}
+  	{%- endif -%}
+  	{% if section.settings.cta_3 != blank and section.settings.cta_3_link != blank %}
+    	{% assign cta_count = cta_count | plus: 1 %}
+  	{%- endif -%}
+
+    <div class="row h-100 d-none d-md-flex {{ vert_align }} {{ hori_align }}" style="position: absolute; top:0; left:0; right:0; left:0;">
+      
+      {%- if section.settings.title != blank -%}
+	  <div class="col-md-6 col-lg-5 col-xl-4">
+    	<div class="m-3 m-md-5 pb-2{% if section.settings.content_alignment contains 'right' %} text-end{% elsif section.settings.content_alignment contains 'left' %} text-start{% else %} text-center{% endif %}">
+			
+        	{% if section.settings.content_image != blank  %}
+			<img src="{{ section.settings.content_image | img_url: '1400x'  }}" class="mb-4" style="width: {{ section.settings.content_image_size }}%;"> 
+        	{%- endif -%}
+			
+        	<div><h2 class="heading-{{ section.id }}">{{ section.settings.title }}</h2></div>
+        	{% if cta_count > 0 %}
+        	<div class="mt-3">
+        	{% if section.settings.cta_1 != blank and section.settings.cta_1_link != blank  %}
+          	<a href="{{ section.settings.cta_1_link }}"{% if section.settings.cta_1_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_1 }}</a>
+        	{%- endif -%}
+        	{% if section.settings.cta_2 != blank and section.settings.cta_2_link != blank  %}
+          	<a href="{{ section.settings.cta_2_link }}"{% if section.settings.cta_2_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_2 }}</a>
+        	{%- endif -%}
+        	{% if section.settings.cta_3 != blank and section.settings.cta_3_link != blank  %}
+          	<a href="{{ section.settings.cta_3_link }}"{% if section.settings.cta_3_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_3 }}</a>
+        	{%- endif -%}
+        	</div>
+        	{%- endif -%}
+      	</div>
+      </div>
+      {%- endif -%}
+
+    </div>
+
+    <div class="row h-100 d-md-none {{ vert_align_mobile }} {{ hori_align }}" style="position: absolute; top:0; left:0; right:0; left:0;">
+      
+      {%- if section.settings.title != blank -%}
+	  <div class="col-12">
+    	<div class="m-3 m-md-5 pb-2{% if section.settings.content_alignment contains 'right' %} text-end{% elsif section.settings.content_alignment contains 'left' %} text-start{% else %} text-center{% endif %}">
+			
+        	{% if section.settings.content_image != blank  %}
+			<img src="{{ section.settings.content_image | img_url: '1000x'  }}" class="mb-4" style="width: {{ section.settings.content_image_size }}%;"> 
+        	{%- endif -%}
+			
+        	<div><h2 class="heading-{{ section.id }}">{{ section.settings.title }}</h2></div>
+        	{% if cta_count > 0 %}
+        	<div class="mt-3">
+        	{% if section.settings.cta_1 != blank and section.settings.cta_1_link != blank  %}
+          	<a href="{{ section.settings.cta_1_link }}"{% if section.settings.cta_1_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_1 }}</a>
+        	{%- endif -%}
+        	{% if section.settings.cta_2 != blank and section.settings.cta_2_link != blank  %}
+          	<a href="{{ section.settings.cta_2_link }}"{% if section.settings.cta_2_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_2 }}</a>
+        	{%- endif -%}
+        	{% if section.settings.cta_3 != blank and section.settings.cta_3_link != blank  %}
+          	<a href="{{ section.settings.cta_3_link }}"{% if section.settings.cta_3_new_window %} target="_blank"{% endif %} class="btn btn-cta btn-cta-{{ section.id }}">{{ section.settings.cta_3 }}</a>
+        	{%- endif -%}
+        	</div>
+        	{%- endif -%}
+      	</div>
+      </div>
+      {%- endif -%}
+
+    </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "LPS Banner",
+  "tag": "section",
+  "class": "lps-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container & Alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_container",
+      "default": false,
+      "label": "Full width banner"
+    },
+    {
+      "type": "select",
+      "id": "container_alignment",
+      "options": [
+        {
+          "value": "left top",
+          "label": "Left Top"
+        },
+        {
+          "value": "left center",
+          "label": "Left Center"
+        },
+        {
+          "value": "left bottom",
+          "label": "Left Bottom"
+        },
+        {
+          "value": "middle top",
+          "label": "Center Top"
+        },
+        {
+          "value": "middle center",
+          "label": "Center Center"
+        },
+        {
+          "value": "middle bottom",
+          "label": "Center Bottom"
+        },
+        {
+          "value": "right top",
+          "label": "Right Top"
+        },
+        {
+          "value": "right center",
+          "label": "Right Center"
+        },
+        {
+          "value": "right bottom",
+          "label": "Right Bottom"
+        }
+      ],
+      "default": "middle center",
+      "label": "Content container alignment (desktop)"
+    },
+    {
+      "type": "select",
+      "id": "container_alignment_mobile",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center",
+      "label": "Content container alignment (mobile)"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment within container"
+    },
+    {
+      "type": "header",
+      "content": "Content Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "content_image",
+      "label": "Content Image"
+    },
+    {
+      "type": "range",
+      "id": "content_image_size",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "label": "Content Image Size",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Content Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Heading Text",
+      "label": "Heading Text"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 24,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 38
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Button 1"
+    },
+    {
+      "type": "text",
+      "id": "cta_1",
+      "label": "CTA Button 1 Text",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "url",
+      "id": "cta_1_link",
+      "label": "CTA Button 1 Link",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_1_new_window",
+      "default": false,
+      "label": "Open CTA 1 link in new window."
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Button 2"
+    },
+    {
+      "type": "text",
+      "id": "cta_2",
+      "label": "CTA Button 2 Text",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "url",
+      "id": "cta_2_link",
+      "label": "CTA Button 2 Link",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_2_new_window",
+      "default": false,
+      "label": "Open CTA 2 link in new window."
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Button 3"
+    },
+    {
+      "type": "text",
+      "id": "cta_3",
+      "label": "CTA Button 3 Text",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "url",
+      "id": "cta_3_link",
+      "label": "CTA Button 3 Link",
+      "info": "Leave blank for no button"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_3_new_window",
+      "default": false,
+      "label": "Open CTA 3 link in new window."
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Button Font Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "cta_button_colour",
+      "options": [
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "cyan",
+          "label": "Cyan"
+        },
+        {
+          "value": "lime",
+          "label": "Lime"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        }
+      ],
+      "default": "white",
+      "label": "CTA Button Colour"
+    },
+    {
+      "type": "header",
+      "content": "Image or Video Backgrounds"
+    },
+    {
+      "type": "paragraph",
+      "content": "Use video OR image backgrounds (not both)"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video background (desktop)"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video background (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Image background (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Image background (mobile)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#DDDDDD"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "LPS Banner"
+    }
+  ]
+}
+{% endschema %}
