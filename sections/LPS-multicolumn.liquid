@@ -91,7 +91,22 @@ a.block_link:hover {
         <div class="row justify-content-center h-100 {{ vert_align }}" style="position: relative;" >
           <div class="col-12">
             <div class="headline-link m-3 m-md-5{% if block.settings.heading_alignment contains 'right' %} text-end{% elsif block.settings.heading_alignment contains 'left' %} text-start{% else %} text-center{% endif %}">
-              <h2 style="color:{{ block.settings.title_color }};font-size:{{ block.settings.title_font_size }}px;">{{ block.settings.title }}</h2>
+              <style>
+                h2.heading-{{ block.id }}  {
+                  font-size:{{ block.settings.title_font_size | times: 0.7 | round }}px;
+                }
+                @media (min-width: 750px) {
+                  h2.heading-{{ block.id }} {
+                    font-size:{{ block.settings.title_font_size | times: 0.85 | round }}px;
+                  }
+                }
+                @media (min-width: 1200px) {
+                  h2.heading-{{ block.id }} {
+                    font-size:{{ block.settings.title_font_size }}px;
+                  }
+                }
+              </style>
+              <h2 class="heading-{{ block.id }}" style="color:{{ block.settings.title_color }};">{{ block.settings.title }}</h2>
               {%- if block.settings.cta != blank and block.settings.block_link != blank -%}
               <div class="mt-3">
                 <button class="btn btn-cta btn-primary mb-2" style="color:{{ block.settings.cta_color_text }}; font-size:{{ block.settings.cta_font_size }}px;{%- if block.settings.cta_color_bg != blank -%} background-color:{{ block.settings.cta_color_bg }};{%- endif -%}">{{ block.settings.cta }}</button>
@@ -189,7 +204,7 @@ a.block_link:hover {
           "step": 2,
           "unit": "px",
           "label": "Title Font Size",
-          "default": 36
+          "default": 38
         },
         {
           "type": "color",
